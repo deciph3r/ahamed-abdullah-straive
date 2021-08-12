@@ -52,12 +52,13 @@ function App() {
               <input type="password" name="password" onBlur={touchHandler} minLength="6" />{formValues.isTouched.password && !formValues.password && <div>Required</div>}
             </div>
           </div>
-          <button type="submit" disabled={!formValues.submit}>Submit</button>
+          <div className="btn-submit"><button type="submit" disabled={!formValues.submit}>Submit</button></div>
+         
         </form>
 
         <table>
           <tbody>
-            <tr>
+            <tr className="table-header">
               <th>Name</th>
               <th>Email</th>
             </tr>

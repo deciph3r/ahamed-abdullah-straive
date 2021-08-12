@@ -8,10 +8,34 @@ form {
   height: 50vh;
   flex-direction: column;
   justify-content: space-evenly;
+  background: lightblue;
+  padding: 100px;
+  border-radius: 60px;
+  border: solid blue 3px;
+}
+input {
+  border: solid blue 5px;
+  border-radius: 5px;
 }
 table {
   width: 100%;
+  border-collapse: collapse;
+  border: 1px solid black;
+  margin-top: 50px;
 }
+
+.table-header {
+  background-color: orange;
+}
+.btn-submit {
+  text-align: center;
+}
+.btn-submit button {
+  background-color: blue;
+  color: #fff;
+  padding: 5px;
+}
+
 .page-title {
   text-align: center;
 }
