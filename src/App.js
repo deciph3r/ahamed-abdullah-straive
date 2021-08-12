@@ -2,7 +2,6 @@ import { useState } from 'react';
 import './App.css';
 
 function App() {
-
   const [formValues, setFormValues] = useState({
     userName: null,
     email: null,
@@ -14,7 +13,7 @@ function App() {
     },
     submit : false
   })
-
+  const [listOfUsers,setListOfUsers] = useState([]);
   const touchHandler = (e)=>{
     setFormValues({...formValues, isTouched:{...formValues.isTouched, [e.target.name]: true}})
   }
@@ -25,24 +24,58 @@ function App() {
       submit : (formValues.userName && formValues.email && formValues.password)
     });
   }
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const temp = formValues.userName +"#"+formValues.email;
+    setListOfUsers((listOfUsers) => [...listOfUsers, temp])
+  }
   return (
     <div className="App">
-      
-        <form onChange={changeHandler} onSubmit={false}>
-          <div>
+        <form onChange={changeHandler} onSubmit={submitHandler}>
+          <h1 class="page-title">Log in</h1>
+          <div className="field">
             <label htmlFor="userName" >User Name</label>
-            <input type="text" name="userName" onBlur={touchHandler}/>{formValues.isTouched.userName && !formValues.userName && <div>Required</div>}
+            <div>
+              <input type="text" name="userName" onBlur={touchHandler}/>
+              {formValues.isTouched.userName && !formValues.userName && <div>Required</div>}
+            </div>
           </div>
-          <div>
+          <div className="field">
             <label htmlFor="email" >Email</label>
-            <input type="text" name="email" onBlur={touchHandler}/>{formValues.isTouched.email && !formValues.email && <div>Required</div>}
+            <div>
+              <input type="email" name="email" onBlur={touchHandler}/>{formValues.isTouched.email && !formValues.email && <div>Required</div>}
+            </div>
           </div>
-          <div>
+          <div className="field">
             <label htmlFor="userName" >Password</label>
-            <input type="password" name="password" onBlur={touchHandler}/>{formValues.isTouched.password && !formValues.password && <div>Required</div>}
+            <div>
+              <input type="password" name="password" onBlur={touchHandler} minLength="6" />{formValues.isTouched.password && !formValues.password && <div>Required</div>}
+            </div>
           </div>
           <button type="submit" disabled={!formValues.submit}>Submit</button>
         </form>
+
+        <table>
+          <tbody>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+            </tr>
+             {listOfUsers.map((element) => {
+               const t = element.split('#')
+               return(
+                <tr>
+                  <td>{t[0]}</td>
+                  <td>{t[1]}</td>
+              </tr>
+               )
+             }
+             
+            )}
+        
+            
+          </tbody>
+        </table>
     </div>
   );
 }

@@ -1,1 +1,21 @@
+.App {
+  margin: auto;
+  width: 50%;
+}
 
+form {
+  display: flex;
+  height: 50vh;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+table {
+  width: 100%;
+}
+.page-title {
+  text-align: center;
+}
+.field {
+  display: flex;
+  justify-content: space-between;
+}
