@@ -27,7 +27,18 @@ function App() {
   const submitHandler = (e) => {
     e.preventDefault();
     const temp = formValues.userName +"#"+formValues.email;
-    setListOfUsers((listOfUsers) => [...listOfUsers, temp])
+    setListOfUsers((listOfUsers) => [...listOfUsers, temp]);
+    setFormValues({
+      userName: null,
+    email: null,
+    password: null,
+    isTouched : {
+      userName: false,
+      email: false,
+      password: false
+    },
+    submit : false
+    });
   }
   return (
     <div className="App">
@@ -43,7 +54,7 @@ function App() {
           <div className="field">
             <label htmlFor="email" >Email</label>
             <div>
-              <input type="email" name="email" onBlur={touchHandler}/>{formValues.isTouched.email && !formValues.email && <div>Required</div>}
+              <input type="email" name="email"  onBlur={touchHandler}/>{formValues.isTouched.email && !formValues.email && <div>Required</div>}
             </div>
           </div>
           <div className="field">
